@@ -16,7 +16,24 @@ public static class QueenAttack
 {
     public static bool CanAttack(Queen white, Queen black)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        bool attack;
+        if (white.Row == black.Row || white.Column == black.Column)
+        {
+            attack = true;
+        }
+        else if ((white.Row + white.Column) == (black.Row + black.Column))
+        {
+            attack = true;
+        }
+        else if ((white.Row - black.Row) == (white.Column - black.Column))
+        {
+            attack = true;
+        }
+        else
+        {
+            attack = false;
+        }
+        return attack;
     }
 
     public static Queen Create(int row, int column)
