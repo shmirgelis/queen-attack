@@ -16,45 +16,26 @@ public static class QueenAttack
 {
     public static bool CanAttack(Queen white, Queen black)
     {
-        bool attack;
-        if (white.Row == black.Row || white.Column == black.Column)
-        {
-            attack = true;
-        }
-        else if ((white.Row + white.Column) == (black.Row + black.Column))
-        {
-            attack = true;
-        }
-        else if ((white.Row - black.Row) == (white.Column - black.Column))
-        {
-            attack = true;
-        }
-        else
-        {
-            attack = false;
-        }
-        return attack;
+        return white.Row == black.Row ||
+               white.Column == black.Column ||
+               white.Row + white.Column == black.Row + black.Column ||
+               white.Row - white.Column == black.Row - black.Column;        
     }
 
     public static Queen Create(int row, int column)
     {
-        if (row >= 0 && row <= 7)
+        const int RowColumnMinLimit = 0;
+        const int RowColumnMaxLimit = 7;
+        
+        if ((row >= RowColumnMinLimit && row <= RowColumnMaxLimit) && (column >= RowColumnMinLimit && column <= RowColumnMaxLimit))
         {
-            if (column >= 0 && column <= 7)
-            {
-               _= column;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            _ = row;
+            return new Queen(row, column);
         }
         else
         {
             throw new ArgumentOutOfRangeException();
         }
-        return new Queen(row, column);
+
     }
 
 }
